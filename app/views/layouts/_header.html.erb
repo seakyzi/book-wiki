@@ -8,22 +8,22 @@
           <li><%= link_to "帮助", help_path %></li>
           <li><%= link_to "所有书籍", loved_books_path %></li>
 	  <% if signed_in? %>
-	    <li><%= link_to "Users", users_path %></li>
-	    <li id="fat-menu" class="dropdown">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user.name%><b class="caret"></b></a>
-	      <ul class="dropdown-menu">
-		<li><%= link_to "用户资料", current_user %></li>
-		<li><%= link_to "正在编辑", editchapter_path %></li>
-		<li><%= link_to "消息", applies_path%></li>
-		<li><%= link_to "设置", edit_user_path(current_user) %></li>
-		<li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
+	  <% msg_count = Apply.where(:owner_id => current_user.id, :status => 0 ).count %>
+          <li><%= link_to "消息"+ "#{'('+msg_count.to_s+')' unless msg_count == 0}", applies_path%></li>
+	  <li id="fat-menu" class="dropdown">
+	    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user.name%><b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+	      <li><%= link_to "用户资料", current_user %></li>
+	      <li><%= link_to "正在编辑", editchapter_path %></li>
+              <li><%= link_to "设置", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Sign out", signout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
           <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
+          <li><%= link_to "Sign in", signin_path %></li>
           <% end %>
         </ul>
       </nav>

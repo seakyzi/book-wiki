@@ -13,8 +13,8 @@ class AppliesController < ApplicationController
   end
 
   def index
-    @applies = Apply.where({ :owner_id => current_user.id }).all
-    @applies_too = Apply.where({:applicant_id=>current_user.id}).all
+    @applies = Apply.where({ :owner_id => current_user.id, :order => "created_time DESC" }).all
+    @applies_too = Apply.where({ :applicant_id=>current_user.id, :order => "updated_time DESC" }).all
   end
 
   ##通过
