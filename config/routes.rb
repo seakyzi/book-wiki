@@ -1,35 +1,36 @@
 Wiki::Application.routes.draw do
 
-	resources	:chapters
-	resources	:loved_books
-	resources :users
-	resources :sessions, only: [:new, :create, :destroy]
-	resources :editions
-	resources :applies
+  resources :chapters
+  resources :loved_books
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :editions
+  resources :applies
 
-	root to: 'static_pages#home'
-	
-	match '/editchapter', to: 'users#editchapter'	
-	match '/signup',  to: 'users#new'
-	match '/signin',  to: 'sessions#new'
+  root to: 'static_pages#home'
+  
+  match '/editchapter', to: 'users#editchapter'	
+  match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-	match '/help',    to: 'static_pages#help'
+  match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
   post "applies/admit"
   post "applies/reject"
   post "chapters/addeditor"
-	get "static_pages/home"
+  get "static_pages/home"
 
   get "static_pages/help"
 
   get "static_pages/about"
 
-	get "static_pages/contact"
+  get "static_pages/contact"
 
-#  get "users/new"
+  match 'loved_books/:id/print', to: 'loved_books#print', as: :print 
+  #  get "users/new"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -78,7 +79,7 @@ Wiki::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the rootof your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 

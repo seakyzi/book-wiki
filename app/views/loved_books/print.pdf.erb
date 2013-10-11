@@ -1,0 +1,51 @@
+<head>
+  <style>
+   .page-break {dispaly:block; clear:both; page-break-after:always;}
+   #title_page {text-align:center;}
+   #book_title {font-size: 50px;
+		padding-top: 100px;
+		padding-bottom: 30px}
+   #book_author {font-style:italic; font-size:20px}
+   #list_title {font-style:italic; font-size:40px}
+   #list {font-size: 20px;}
+   .chapter_title {font-size: 40px;}
+   .description {
+     font-size: 15px;
+     padding-top: 20px;
+     padding-left: 120px;
+     font-family: Monospace;
+   }
+   .sub_chapter_title {font-size: 30px;}
+   .content {font-size: 20px;}
+   p {text-indent: 1.5em;}
+   ul {list-style-type: none;}
+  </style>
+</head>
+<body>
+  <%# book_title%>
+  <div id="title_page">
+    <div id="book_title"><%= @loved_book.book_name %></div>
+    <div id="book_author"><%= @loved_book.user.name %></div>
+  </div>
+  <div class="page-break"></div>
+  <%# list %>
+  <div id="list_title">Table of Contents:</div>
+  <div id="list">
+    <%= render 'list', object: @loved_book,
+      :parent_chapter_index => ""%>
+  </div>
+  <div class="page-break"></div>
+  <%# content %>
+  <% @loved_book.chapters.each_with_index do |chapter, index| %>
+    <div class="chapter_title">
+      Chapter <%= index + 1 %><br />
+      <%= chapter.name %>
+    </div>
+    <div class="description">
+      <%= chapter.description %>
+    </div>
+    <%= render 'content', object: chapter,
+      :parent_chapter_index => index+1 %>
+    <div class="page-break"></div>
+  <% end %>
+</body>

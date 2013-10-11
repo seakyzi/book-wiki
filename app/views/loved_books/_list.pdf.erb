@@ -1,0 +1,12 @@
+<% if object.chapters.any? %>
+  <ul>
+    <% object.chapters.each_with_index do |sub_chapter, index| %>
+      <li>
+	<%= current_index = "#{parent_chapter_index}#{index+1}."%>
+	<%= sub_chapter.name %>
+	<%= render 'list', object: sub_chapter,
+	  :parent_chapter_index => current_index %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

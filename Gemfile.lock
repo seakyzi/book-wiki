@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    RedCloth (4.2.9)
     actionmailer (3.2.8)
       actionpack (= 3.2.8)
       mail (~> 2.4.4)
@@ -109,12 +110,16 @@ GEM
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    wicked_pdf (0.9.7)
+      rails
     will_paginate (3.0.3)
+    wkhtmltopdf-binary (0.9.9.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  RedCloth
   anjlab-bootstrap-rails (>= 2.2)
   bcrypt-ruby (= 3.0.1)
   bootstrap-will_paginate (= 0.0.6)
@@ -127,3 +132,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   therubyracer
   uglifier (>= 1.0.3)
+  wicked_pdf
+  wkhtmltopdf-binary

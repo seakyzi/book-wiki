@@ -1,0 +1,14 @@
+<div class="content"><%= markdown(object.content) %></div>
+<% if object.chapters.any? %>
+  <% object.chapters.each_with_index do |sub_chapter, index| %>
+    <div class="sub_chapter_title">
+      <%= current_index = "#{parent_chapter_index}.#{index+1}" %>
+      <%= sub_chapter.name %>
+    </div>
+    <div class="description">
+      <%= sub_chapter.description %>
+    </div>
+    <%= render 'content', object: sub_chapter,
+      :parent_chapter_index => current_index %>
+  <% end %>
+<% end %>
